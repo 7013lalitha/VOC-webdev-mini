@@ -8,14 +8,10 @@
 /* Body Styling */
 body {
   font-family: 'Arial', sans-serif;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to right, #000000, #080808, #484848, #505050, #080808, #000000); /* Changed to black background */
-  overflow: hidden;
+  min-height: 100vh;
+  background: linear-gradient(to right, #000000, #080808, #484848, #505050, #080808, #000000);
+  overflow-x: hidden;
   color: white;
-  flex-direction: column; /* Make everything stack vertically */
 }
 
 /* Navigation Bar Styles */
@@ -49,26 +45,21 @@ body {
 /* Main Section */
 .main-section {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: auto; /* Adjust height to fit content */
-  position: relative;
-  margin-bottom: 40px; /* Adds space for videos below */
+  padding-top: 50px;
 }
 
-/* Update the container style  */
+/* Container for title and button */
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px; /* Spacing between main section and video section */
 }
 
 /* EditKaro Title with Color Splash Effect */
 .title {
-  font-size: 4rem;
+  font-size: 6rem;
   font-weight: bold;
   color: transparent;
   background-image: linear-gradient(45deg, #ffcc00, #ff6700, #ff9900, #ff4500, #ff1493);
@@ -82,19 +73,19 @@ body {
 
 @keyframes colorSplash {
   0% {
-      background-position: 0% 50%;
-      opacity: 0;
-      transform: scale(0.8);
+    background-position: 0% 50%;
+    opacity: 0;
+    transform: scale(0.8);
   }
   50% {
-      background-position: 50% 50%;
-      opacity: 0.7;
-      transform: scale(1.1);
+    background-position: 50% 50%;
+    opacity: 0.7;
+    transform: scale(1.1);
   }
   100% {
-      background-position: 100% 50%;
-      opacity: 1;
-      transform: scale(1);
+    background-position: 100% 50%;
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -114,6 +105,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
 .main-button:hover {
@@ -121,55 +113,186 @@ body {
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
-/* Videos and Footer */
-.video-section, .footer {
-  text-align: center;
-  padding: 20px;
-  width: 100%;
+/* Video Section Styles */
+.video-section {
+    padding: 50px 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
 }
 
 .video-section h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffcc00; /* A bright color for the heading */
 }
 
+/* Video Gallery Grid */
 .video-gallery {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 3rem 1rem;
+    padding: 3rem 0;
+    margin: 0 1.5rem;
+    border-top:4px solid#ccc;
+    
+.video-section:first-child {
+  border-top: none;
 }
 
-.video-item {
-  width: 300px;
-  height: 200px;
-  margin: 10px;
-  background: #555;
+.video-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+}
+
+.thumbnail {
+  position: relative;
+  display: flex;
+}
+
+.thumbnail::before {
+  content: attr(data-duration);
+  position: absolute;
+  background-color: rgba(0, 0, 0, .85);
+  color: white;
+  right: 5px;
+  bottom: 5px;
+  padding: .1em .3em;
+  border-radius: .3em;
+  font-size: .9rem;
+}
+
+.thumbnail-image {
+  width: 100%;
+  height: 100%;
+  min-width: 250px;
+  min-height: 150px;
+  background-color: #AAA;
+}
+
+.video-bottom-section {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.video-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.video-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+  text-decoration: none;
+  color: black;
+}
+
+.video-section-title {
+  grid-column: 1 / -1;
+  margin: -.5rem 0;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  border-radius: 10px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  padding: 0 .5rem;
+}
+
+.video-section-title-close {
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 2rem;
+  color: #555;
+  cursor: pointer;
+}
+
+.videos {
+  background-color: #F9F9F9;
+}
+
+.categories {
+  padding: 1rem 2rem;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+}
+
+.category-section {
+  display: flex;
+  overflow: hidden;
+}
+
+.category {
+  margin-right: 1rem;
+  word-wrap: none;
+  white-space: nowrap;
+  border: 1px solid #CCC;
+  border-radius: 900px;
+  background-color: #E7E7E7;
+  padding: .5rem 1rem;
+  font-size: inherit;
+  cursor: pointer;
+  transition: background-color 150ms;
+}
+
+.category:hover {
+  background-color: #DDD;
+}
+
+.category.active {
+  background-color: #606060;
+  color: white;
+  border-color: #EEE;
+}
+
+.category:last-child {
+  margin-right: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+
+/* Video Items Styling */
+.video-item {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.video-item video {
+    width: 100%;
+    height: auto;
 }
 
 .video-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-/* Footer Styles */
-.footer {
-  color: #fff;
-  font-size: 0.9rem;
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .video-gallery {
-      flex-direction: column;
-  }
+    .video-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Smaller grid for mobile */
+    }
 
-  .main-section {
-      padding: 20px;
-  }
+    .video-item {
+        max-width: 200px; /* Reduce max width on smaller screens */
+    }
+}
+
+/* Footer or Rights Reserved */
+.footer {
+    position: relative;
+    text-align: center;
+    font-size: 0.8rem;
+    color: white;
+    margin-top: 20px;
 }
