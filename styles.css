@@ -12,72 +12,74 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, #000000, #080808, #484848, #505050, #080808, #000000) ; /* Changed to black background */
+  background: linear-gradient(to right, #000000, #080808, #484848, #505050, #080808, #000000); /* Changed to black background */
   overflow: hidden;
   color: white;
+  flex-direction: column; /* Make everything stack vertically */
 }
 
 /* Navigation Bar Styles */
 .navbar {
-  position: absolute; /* Positioning at the top right corner */
-  top: 20px; /* Distance from the top */
-  right: 20px; /* Distance from the right */
-  z-index: 1000; /* Make sure it is above other content */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
 }
 
 .navbar ul {
-  list-style: none; /* Remove bullets */
-  display: flex; /* Horizontal layout */
+  list-style: none;
+  display: flex;
 }
 
 .navbar li {
-  margin-left: 20px; /* Space between menu items */
+  margin-left: 20px;
 }
 
 .navbar a {
-  text-decoration: none; /* Remove underline */
-  color: white; /* Text color */
-  font-size: 1.2rem; /* Font size */
-  transition: color 0.3s; /* Smooth color transition */
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  transition: color 0.3s;
 }
 
 .navbar a:hover {
-  color: #ffcc00; /* Change color on hover */
+  color: #ffcc00;
 }
 
 /* Main Section */
 .main-section {
   text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: auto; /* Adjust height to fit content */
   position: relative;
+  margin-bottom: 40px; /* Adds space for videos below */
 }
 
 /* Update the container style  */
 .container {
   display: flex;
-  flex-direction: column; /* Change to column layout */
-  justify-content: center; /* Cneter vertically */
-  align-items: center; /*Center horizontally */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* EditKaro Title with Color Splash Effect */
 .title {
-  font-size: 6rem;
+  font-size: 4rem;
   font-weight: bold;
   color: transparent;
   background-image: linear-gradient(45deg, #ffcc00, #ff6700, #ff9900, #ff4500, #ff1493);
   background-clip: text;
   background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   animation: colorSplash 3s ease-in-out forwards;
   opacity: 0;
 }
 
-/* Animation for the color splash */
 @keyframes colorSplash {
   0% {
       background-position: 0% 50%;
@@ -99,16 +101,16 @@ body {
 /* Circular Main Button with Shadow */
 .main-button {
   font-size: 1.5rem;
-  width: 150px; /* Fixed width for the circle */
-  height: 150px; /* Height equal to width to make it circular */
+  width: 150px;
+  height: 150px;
   padding: 0;
   border: none;
-  border-radius: 50%; /* Circle */
+  border-radius: 50%;
   background: linear-gradient(to right, #FF1493, #FF69B4, #FF1493);
   color: white;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,131 +118,58 @@ body {
 
 .main-button:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* Shadow grows on hover */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
-/* Adding the colorful circular bottom bubbles */
-body::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: radial-gradient(circle, #000000, #484848, #000000);
-  opacity: 0.8;
-  border-radius: 50%;
-  animation: float 6s ease-in-out infinite;
+/* Videos and Footer */
+.video-section, .footer {
+  text-align: center;
+  padding: 20px;
+  width: 100%;
 }
 
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(15px); }
-  100% { transform: translateY(0); }
+.video-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.video-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.video-item {
+  width: 300px;
+  height: 200px;
+  margin: 10px;
+  background: #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.video-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer Styles */
+.footer {
+  color: #fff;
+  font-size: 0.9rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .navbar ul {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .video-gallery {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  .video-gallery {
+      flex-direction: column;
+  }
 
-    .main-section {
-        padding: 20px;
-    }
-}
-
-.video-item {
-    width: 100%;
-    max-width: 300px;
-    margin: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.video-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-/* Lightbox Styling */
-.lightbox {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-}
-
-.lightbox video {
-    max-width: 90%;
-    max-height: 90%;
-}
-
-/* Video Section Styles */
-.video-section {
-    padding: 50px 20px;
-    background-color: #333;
-    color: white;
-    text-align: center;
-}
-
-.video-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #ffcc00; /* A bright color for the heading */
-}
-
-.video-filters {
-    margin-bottom: 20px;
-}
-
-.video-filters button {
-    background-color: #555;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin: 0 5px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.video-filters button:hover {
-    background-color: #ffcc00;
-}
-
-.video-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.video-item {
-    width: 100%;
-    max-width: 300px;
-    margin: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.video-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-html {
-    scroll-behavior: smooth;
+  .main-section {
+      padding: 20px;
+  }
 }
