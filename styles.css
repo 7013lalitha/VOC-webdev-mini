@@ -1,0 +1,246 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #000000, #080808, #484848, #505050, #080808, #000000) ; /* Changed to black background */
+  overflow: hidden;
+  color: white;
+}
+
+/* Navigation Bar Styles */
+.navbar {
+  position: absolute; /* Positioning at the top right corner */
+  top: 20px; /* Distance from the top */
+  right: 20px; /* Distance from the right */
+  z-index: 1000; /* Make sure it is above other content */
+}
+
+.navbar ul {
+  list-style: none; /* Remove bullets */
+  display: flex; /* Horizontal layout */
+}
+
+.navbar li {
+  margin-left: 20px; /* Space between menu items */
+}
+
+.navbar a {
+  text-decoration: none; /* Remove underline */
+  color: white; /* Text color */
+  font-size: 1.2rem; /* Font size */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.navbar a:hover {
+  color: #ffcc00; /* Change color on hover */
+}
+
+/* Main Section */
+.main-section {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+/* Update the container style  */
+.container {
+  display: flex;
+  flex-direction: column; /* Change to column layout */
+  justify-content: center; /* Cneter vertically */
+  align-items: center; /*Center horizontally */
+}
+
+/* EditKaro Title with Color Splash Effect */
+.title {
+  font-size: 6rem;
+  font-weight: bold;
+  color: transparent;
+  background-image: linear-gradient(45deg, #ffcc00, #ff6700, #ff9900, #ff4500, #ff1493);
+  background-clip: text;
+  background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+  animation: colorSplash 3s ease-in-out forwards;
+  opacity: 0;
+}
+
+/* Animation for the color splash */
+@keyframes colorSplash {
+  0% {
+      background-position: 0% 50%;
+      opacity: 0;
+      transform: scale(0.8);
+  }
+  50% {
+      background-position: 50% 50%;
+      opacity: 0.7;
+      transform: scale(1.1);
+  }
+  100% {
+      background-position: 100% 50%;
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+/* Circular Main Button with Shadow */
+.main-button {
+  font-size: 1.5rem;
+  width: 150px; /* Fixed width for the circle */
+  height: 150px; /* Height equal to width to make it circular */
+  padding: 0;
+  border: none;
+  border-radius: 50%; /* Circle */
+  background: linear-gradient(to right, #FF1493, #FF69B4, #FF1493);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* Shadow grows on hover */
+}
+
+/* Adding the colorful circular bottom bubbles */
+body::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: radial-gradient(circle, #000000, #484848, #000000);
+  opacity: 0.8;
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(15px); }
+  100% { transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .video-gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-section {
+        padding: 20px;
+    }
+}
+
+.video-item {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.video-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Lightbox Styling */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox video {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+/* Video Section Styles */
+.video-section {
+    padding: 50px 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+.video-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffcc00; /* A bright color for the heading */
+}
+
+.video-filters {
+    margin-bottom: 20px;
+}
+
+.video-filters button {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.video-filters button:hover {
+    background-color: #ffcc00;
+}
+
+.video-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.video-item {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.video-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+html {
+    scroll-behavior: smooth;
+}
